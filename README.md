@@ -1,8 +1,9 @@
-### Password Generator by sting8k
-
+### Password Generator by sting8k ###
 
 A tool to generate password from words that user provide.
+
 ---
+
 
 #### Usage
 
