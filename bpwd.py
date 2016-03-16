@@ -53,18 +53,19 @@ def generate(lstword):
 	return res
 
 def clean_lstword(words):
-	for i in range(0,len(words)+1):
+	for i in range(0,len(words)):
 		if words[i] == "":
 			del words[i]
 	return words
 
 def chk_file(p_file):
 	try:
-		finput = open(argwtf[p_file],"r")
+		finput = open(p_file,"r")
 		input = finput.read()
 		finput.close()
 		return input.split()
 	except Exception, e:
+		print e
 		return False
 		
 def render_append():
@@ -74,6 +75,7 @@ def render_append():
 			old_words = clean_lstword(check)
 			new_words = clean_lstword(argwtf['append'].split())
 			return old_words+new_word(new_words,argwtf['transform'])
+		print "Cannot open file", argwtf['listword']
 		return False
 	except Exception, e:
 		print(traceback.format_exc())
@@ -142,12 +144,11 @@ if argwtf['append'] != "":
 		f.write(data)
 		f.close()
 
-
-if chk_file("listword") != False:
-	rs = chk_file("listword")
+if chk_file(argwtf['listword']) != False:
+	rs = chk_file(argwtf['listword'])
 	if argwtf['extendword'] != "0":
-		if chk_file("extendword") != False:
-			rs += chk_file("extendword")
+		if chk_file(argwtf['extendword']) != False:
+			rs += chk_file(argwtf['extendword'])
 
 	if argwtf['maxlen']!=0:
 		tmp = maxitem_by_len(rs)
